@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="tela-configuracao">
+        <h2>Como você quer jogar?</h2>
+        <div id="selecao-modo-botoes">
+            <button class="botao-modo" id="botao-modo-pvp">Jogador vs Jogador</button>
+            <button class="botao-modo" id="botao-modo-pvc">Jogador vs Computador</button>
+        </div>
+
+        <div id="area-entrada-nomes" style="display: none;"> <h3 id="titulo-entrada-nomes">Insira os Nomes</h3>
+            <div class="campo-nome" id="container-nome-jogador-x">
+                <label for="input-nome-jogador-x" id="label-nome-jogador-x">Jogador X:</label>
+                <input type="text" id="input-nome-jogador-x" placeholder="Nome do Jogador X">
+            </div>
+            <div class="campo-nome" id="container-nome-jogador-o">
+                <label for="input-nome-jogador-o" id="label-nome-jogador-o">Jogador O:</label>
+                <input type="text" id="input-nome-jogador-o" placeholder="Nome do Jogador O">
+            </div>
+            <button id="botao-iniciar-com-nomes">Iniciar Jogo</button>
+        </div>
+    </div>
+
+    <div id="quadro-historico" style="display: none;">
+        <h2>Histórico</h2>
+        <ul id="lista-historico">
+            </ul>
+    </div>
+
+    <main id="conteudo-principal-do-jogo" style="display: none;">
+        <h1>Jogo da Velha</h1>
+        <div id="area-jogo">
+            <div id="mensagem">Vez do Jogador X</div>
+            <div id="tabuleiro-container">
+                <div id="tabuleiro">
+                    <div class="celula" data-index="0"></div>
+                    <div class="celula" data-index="1"></div>
+                    <div class="celula" data-index="2"></div>
+                    <div class="celula" data-index="3"></div>
+                    <div class="celula" data-index="4"></div>
+                    <div class="celula" data-index="5"></div>
+                    <div class="celula" data-index="6"></div>
+                    <div class="celula" data-index="7"></div>
+                    <div class="celula" data-index="8"></div>
+                </div>
+                <div id="linhas-container">
+                    <svg class="linha-vitoria" id="linha-h1" viewBox="0 0 300 100" preserveAspectRatio="none"><line x1="0" y1="50" x2="300" y2="50"/></svg>
+                    <svg class="linha-vitoria" id="linha-h2" viewBox="0 0 300 100" preserveAspectRatio="none"><line x1="0" y1="50" x2="300" y2="50"/></svg>
+                    <svg class="linha-vitoria" id="linha-h3" viewBox="0 0 300 100" preserveAspectRatio="none"><line x1="0" y1="50" x2="300" y2="50"/></svg>
+                    <svg class="linha-vitoria" id="linha-v1" viewBox="0 0 100 300" preserveAspectRatio="none"><line x1="50" y1="0" x2="50" y2="300"/></svg>
+                    <svg class="linha-vitoria" id="linha-v2" viewBox="0 0 100 300" preserveAspectRatio="none"><line x1="50" y1="0" x2="50" y2="300"/></svg>
+                    <svg class="linha-vitoria" id="linha-v3" viewBox="0 0 100 300" preserveAspectRatio="none"><line x1="50" y1="0" x2="50" y2="300"/></svg>
+                    <svg class="linha-vitoria" id="linha-d1" viewBox="0 0 300 300" preserveAspectRatio="none"><line x1="0" y1="0" x2="300" y2="300"/></svg>
+                    <svg class="linha-vitoria" id="linha-d2" viewBox="0 0 300 300" preserveAspectRatio="none"><line x1="300" y1="0" x2="0" y2="300"/></svg>
+                </div>
+            </div>
+            <div id="controles-jogo">
+                <button id="reiniciar">Reiniciar Jogo</button>
+                <button id="botao-voltar-menu">Voltar ao Menu</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+:root {
+    --tamanho-celula: 180px; /* <<<<<<<<<<<<<<<<<<< MUDE AQUI O TAMANHO DA CÉLULA PARA DESKTOP */
+    --gap-tabuleiro: 5px;
+    --borda-tabuleiro: 5px;
+    --cor-linhas-grid: #333; /* Cor da borda externa e dos gaps internos */
+    --cor-linha-vitoria: red;
+    --espessura-linha-vitoria: 10px;
+    --largura-quadro-historico: 240px; /* LARGURA DO QUADRO DE HISTÓRICO PARA DESKTOP */
+}
+
+/* Estilos gerais para o corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(120deg, #ffecf0 0%, #fff9c4 100%);
+}/* Cor de fundo que você alterou */
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Estilos para a Tela de Configuração */
+#tela-configuracao {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20; 
+    width: 90%; 
+    max-width: 450px; 
+}
+
+#tela-configuracao h2 {
+    margin-top: 0;
+    margin-bottom: 20px; 
+    color: #333;
+    font-size: 1.8em; /* Ajuste conforme sua preferência de fonte e estilo */
+}
+
+#selecao-modo-botoes {
+    display: flex;
+    gap: 15px; 
+    margin-bottom: 25px;
+}
+
+.botao-modo {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: 2px solid #007bff;
+    background-color: #fff;
+    color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.botao-modo:hover, .botao-modo.selecionado {
+    background-color: #007bff;
+    color: white;
+}
+
+#area-entrada-nomes h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #444;
+    font-size: 1.2em; /* Ajuste */
+}
+
+.campo-nome {
+    margin-bottom: 15px; 
+    text-align: left;
+    width: 100%;
+    max-width: 300px;
+}
+
+.campo-nome label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.campo-nome input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em; /* Ajuste */
+}
+
+#botao-iniciar-com-nomes {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    margin-top: 10px;
+}
+
+#botao-iniciar-com-nomes:hover {
+    background-color: #0056b3;
+}
+
+/* Quadro de Histórico - Fixo à esquerda para telas maiores */
+#quadro-historico {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--largura-quadro-historico);
+    height: 100vh;
+    background-color: #e0f7fa; /* Cor que você alterou */
+    border-right: 1px solid #ccc;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    z-index: 10;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+#quadro-historico h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4em; /* Ajuste */
+    color: #333;
+    text-align: center;
+}
+
+#lista-historico {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#lista-historico li {
+    padding: 8px 5px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9em; /* Ajuste */
+    color: #555;
+    text-align: left;
+}
+
+#lista-historico li:last-child {
+    border-bottom: none;
+}
+
+/* Conteúdo Principal do Jogo - Ocupa o espaço restante e centraliza seu conteúdo */
+#conteudo-principal-do-jogo {
+    margin-left: var(--largura-quadro-historico);
+    padding: 30px;
+    box-sizing: border-box;
+    width: calc(100% - var(--largura-quadro-historico));
+    min-height: 100vh;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo para o título principal (dentro do conteúdo principal) */
+h1 {
+    color: #333; /* Cor que você alterou */
+    margin-bottom: 25px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 4.5em; /* Aumentado conforme sua personalização */
+    /* font-family: 'Sua Fonte Escolhida', sans-serif;  Se você adicionou uma fonte */
+}
+
+/* Área específica do jogo (tabuleiro, msg, botão) */
+#area-jogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilo para a área de mensagens */
+#mensagem {
+    margin-bottom: 20px;
+    font-size: 1.3em; /* Ajuste */
+    color: #555;
+    min-height: 1.5em;
+    text-align: center;
+    font-size: 2.5em;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+
+}
+
+/* Estilo para o container do tabuleiro e linhas */
+#tabuleiro-container {
+    position: relative;
+    width: calc(3 * var(--tamanho-celula) + 2 * var(--gap-tabuleiro) + 2 * var(--borda-tabuleiro));
+    height: calc(3 * var(--tamanho-celula) + 2 * var(--gap-tabuleiro) + 2 * var(--borda-tabuleiro));
+    padding: var(--borda-tabuleiro);
+    background-color: var(--cor-linhas-grid);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+/* Estilo para o grid interno do tabuleiro */
+#tabuleiro {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, var(--tamanho-celula));
+    grid-template-rows: repeat(3, var(--tamanho-celula));
+    gap: var(--gap-tabuleiro);
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilo para cada célula do tabuleiro */
+.celula {
+    background-color: #fff; /* Cor que você alterou */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(var(--tamanho-celula) * 0.6); /* Ajuste (ex: 0.6 para letras maiores) */
+    font-weight: bold;
+    /* font-family: 'Sua Fonte para X e O', monospace; Se você adicionou uma fonte */
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    position: relative;
+    z-index: 1;
+}
+
+.celula:hover {
+    background-color: #e9e9e9;
+}
+
+.celula.x {
+    color: #007bff; /* Cor que você alterou */
+}
+
+.celula.o {
+    color: #dc3545; /* Cor que você alterou */
+}
+
+/* Container para as linhas SVG */
+#linhas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Estilo base para todas as linhas de vitória SVG */
+.linha-vitoria {
+    position: absolute;
+    display: none;
+    stroke: var(--cor-linha-vitoria);
+    stroke-width: var(--espessura-linha-vitoria);
+    stroke-linecap: round;
+}
+
+.linha-vitoria.visivel {
+    display: block;
+}
+
+/* Posicionamento das Linhas de Vitória SVG */
+#linha-h1 { top: calc(var(--borda-tabuleiro) + var(--tamanho-celula) / 2); left: var(--borda-tabuleiro); width: calc(3 * var(--tamanho-celula) + 2 * var(--gap-tabuleiro)); height: var(--espessura-linha-vitoria); transform: translateY(-50%); }
+#linha-h2 { top: calc(var(--borda-tabuleiro) + var(--tamanho-celula) * 1.5 + var(--gap-tabuleiro)); left: var(--borda-tabuleiro); width: calc(3 * var(--tamanho-celula) + 2 * var(--gap-tabuleiro)); height: var(--espessura-linha-vitoria); transform: translateY(-50%); }
+#linha-h3 { top: calc(var(--borda-tabuleiro) + var(--tamanho-celula) * 2.5 + 2 * var(--gap-tabuleiro)); left: var(--borda-tabuleiro); width: calc(3 * var(--tamanho-celula) + 2 * var(--gap-tabuleiro)); height: var(--espessura-linha-vitoria); transform: translateY(-50%); }
+
+#linha-v1 { left: calc(var(--borda-tabuleiro) + var(--tamanho-celula) / 2); top: var(--borda-tabuleiro); height: calc(3 * var(--tamanho-celula) + 2 * var(--gap-tabuleiro)); width: var(--espessura-linha-vitoria); transform: translateX(-50%); }
+#linha-v2 { left: calc(var(--borda-tabuleiro) + var(--tamanho-celula) * 1.5 + var(--gap-tabuleiro)); top: var(--borda-tabuleiro); height: calc(3 * var(--tamanho-celula) + 2 * var(--gap-tabuleiro)); width: var(--espessura-linha-vitoria); transform: translateX(-50%); }
+#linha-v3 { left: calc(var(--borda-tabuleiro) + var(--tamanho-celula) * 2.5 + 2 * var(--gap-tabuleiro)); top: var(--borda-tabuleiro); height: calc(3 * var(--tamanho-celula) + 2 * var(--gap-tabuleiro)); width: var(--espessura-linha-vitoria); transform: translateX(-50%); }
+
+#linha-d1 { top: 0; left: 0; width: 100%; height: 100%; }
+#linha-d1 line { x1: calc(var(--borda-tabuleiro) + var(--espessura-linha-vitoria)/2); y1: calc(var(--borda-tabuleiro) + var(--espessura-linha-vitoria)/2); x2: calc(100% - var(--borda-tabuleiro) - var(--espessura-linha-vitoria)/2); y2: calc(100% - var(--borda-tabuleiro) - var(--espessura-linha-vitoria)/2); }
+
+#linha-d2 { top: 0; left: 0; width: 100%; height: 100%; }
+#linha-d2 line { x1: calc(100% - var(--borda-tabuleiro) - var(--espessura-linha-vitoria)/2); y1: calc(var(--borda-tabuleiro) + var(--espessura-linha-vitoria)/2); x2: calc(var(--borda-tabuleiro) + var(--espessura-linha-vitoria)/2); y2: calc(100% - var(--borda-tabuleiro) - var(--espessura-linha-vitoria)/2); }
+
+/* Container para os botões de controle do jogo */
+#controles-jogo {
+    display: flex; 
+    gap: 15px; 
+    margin-top: 20px; 
+}
+
+/* Estilo para o botão de reiniciar */
+#reiniciar {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #28a745; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    font-size: 1.6em;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+#reiniciar:hover {
+    background-color: #218838;
+}
+
+/* Estilo para o botão Voltar ao Menu */
+#botao-voltar-menu {
+    padding: 10px 20px;
+    font-size: 1.6em;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: white;
+    background-color: #6c757d; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#botao-voltar-menu:hover {
+    background-color: #5a6268;
+}
+
+/* --- Media Queries para Responsividade --- */
+
+@media (max-width: 880px) { /* Ajustado o breakpoint para quando o histórico começa a espremer o conteúdo */
+    /* Neste breakpoint, o histórico ainda fica na lateral, mas sua largura é reduzida */
+    :root {
+        --largura-quadro-historico: 180px; /* Reduz a largura do histórico */
+    }
+    #quadro-historico h2 {
+        font-size: 1.2em;
+    }
+    #lista-historico li {
+        font-size: 0.8em;
+        padding: 6px 3px;
+    }
+}
+
+
+@media (max-width: 768px) { 
+    /* Para tablets e celulares, o histórico vai para cima e o conteúdo principal ocupa a largura toda */
+    
+    :root {
+        --tamanho-celula: 90px; 
+        --largura-quadro-historico: 100%; /* Histórico ocupará a largura se empilhado */
+        --espessura-linha-vitoria: 8px;
+        --borda-tabuleiro: 4px;
+    }
+
+    body {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        /* body já é flex-direction: column; align-items: center; */
+    }
+
+    #quadro-historico {
+        position: static; 
+        width: 90%;       
+        max-width: 450px; 
+        height: auto;     
+        max-height: 200px;
+        margin: 20px auto 20px auto; /* Espaço acima e abaixo, centralizado */
+        order: 2; /* Ordem depois do título, mas antes do jogo principal */
+        border-right: none; /* Remove borda lateral já que não está mais fixo */
+        border-bottom: 1px solid #ccc; /* Adiciona uma borda inferior */
+    }
+
+    #conteudo-principal-do-jogo {
+        margin-left: 0; 
+        width: 100%;    
+        padding: 15px;
+        min-height: auto; /* Altura baseada no conteúdo */
+        order: 3; /* Depois do histórico */
+    }
+    
+    h1 {
+      font-size: 2.5em; /* Ajustado */
+      order: 1; /* Título primeiro */
+      margin-bottom: 15px;
+    }
+    
+    /* A tela de configuração já deve se adaptar bem com width: 90% e max-width */
+    #tela-configuracao {
+        padding: 20px;
+        margin-top: 10px; /* Para não colar no topo em telas pequenas */
+    }
+
+    #selecao-modo-botoes {
+        flex-direction: column; 
+        gap: 10px;
+        width: 100%;
+    }
+    .botao-modo {
+        width: 100%; 
+    }
+
+    .celula {
+        font-size: calc(var(--tamanho-celula) * 0.6); 
+    }
+
+    #mensagem {
+        font-size: 1.1em;
+    }
+
+    #controles-jogo {
+        flex-direction: column; 
+        gap: 10px;
+        width: 80%; 
+        max-width: 280px;
+    }
+    #controles-jogo button {
+        width: 100%; 
+        padding: 12px; /* Botões maiores para toque */
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --tamanho-celula: 75px; /* Ainda menor para celulares */
+        --espessura-linha-vitoria: 6px;
+        --borda-tabuleiro: 3px;
+    }
+
+    #tela-configuracao {
+        padding: 15px;
+        margin-top: 5px;
+    }
+     #tela-configuracao h2 {
+        font-size: 1.5em;
+    }
+
+    h1 {
+        font-size: 2em; /* Ajustado */
+    }
+    #mensagem {
+        font-size: 1em;
+    }
+
+    #quadro-historico {
+        padding: 10px;
+        max-height: 150px;
+    }
+    #quadro-historico h2 {
+        font-size: 1.2em;
+    }
+    #lista-historico li {
+        font-size: 0.8em;
+    }
+
+    #conteudo-principal-do-jogo {
+        padding: 10px;
+    }
+    .celula {
+        font-size: calc(var(--tamanho-celula) * 0.6);
+    }
+}
